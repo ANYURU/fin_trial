@@ -60,7 +60,7 @@ export default function Members() {
                     validationSchema={loginSchema}
                     onSubmit={async (values, {setSubmitting, resetForm}) => {
 
-                        const response = await fetch("/api/hello", {
+                        fetch("/api/hello", {
                             method: "POST",
                             headers: {
                               "Content-Type": "application/json"
@@ -69,9 +69,10 @@ export default function Members() {
                                 email: values.email,
                                 password: values.password
                             })
-                        })
+                        }).then((response) => response.json())
+                        .then((data) => console.log(data));
 
-                        console.log(response)
+                        
 
                        
                     }}
